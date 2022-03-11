@@ -17,8 +17,10 @@ public class movies {
 			
 			Statement statement = connection.createStatement();
 			ResultSet result = statement.executeQuery(sql);
+			int rowCount = 0;
 			
 			while(result.next()) {
+				rowCount++;
 				Integer Id = result.getInt("Id");
 				String Name = result.getString("Name");
 				String LeadActor = result.getString("LeadActor");
@@ -28,6 +30,8 @@ public class movies {
 				
 				System.out.println(Id + " | "+ Name + LeadActor + " | "+ Actress + YearOfRelease + " | "+ DirectorName);
 			}
+			if( rowCount == 0) {
+				System.out.println("We currently have no movies. ");
 		} catch (SQLException e) {
 			System.out.println("Error connecting to SQLite database");
 			e.printStackTrace();
